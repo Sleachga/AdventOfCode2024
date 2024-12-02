@@ -5,10 +5,10 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import DailyCard from "./DailyCard";
 
 import {
-  input,
-  getDayOneSolution,
+  // input,
+  // getDayOneSolution,
   dayOneSolutionString,
-  getDayOnePartTwoSolution,
+  // getDayOnePartTwoSolution,
   dayOnePartTwoSolutionString,
 } from "./days/1";
 
