@@ -20,10 +20,8 @@ function App() {
   };
 
   // Day 1
-  const { firstList, secondList } = getDayOneSolution(input);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const similarityScore = getDayOnePartTwoSolution(firstList, secondList);
-  // ^ eslint because we may use this tomorrow :)
+  // const { firstList, secondList } = getDayOneSolution(input);
+  // const similarityScore = getDayOnePartTwoSolution(firstList, secondList);
 
   return (
     <Theme appearance={isDarkMode ? "dark" : "light"}>
