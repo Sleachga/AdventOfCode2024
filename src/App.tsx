@@ -1,50 +1,62 @@
-import "./App.css";
+import { Flex, Grid, Theme } from "@radix-ui/themes";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
-import { input } from "../inputs/1";
+import DailyCard from "./DailyCard";
+
+import {
+  input,
+  getDayOneSolution,
+  dayOneSolutionString,
+  getDayOnePartTwoSolution,
+  dayOnePartTwoSolutionString,
+} from "./days/1";
 
 function App() {
-  const firstList: number[] = [];
-  const secondList: number[] = [];
+  const [isDarkMode, setIsDarkMode] = useLocalStorage("darkMode", false);
 
-  input.forEach((item, index) => {
-    if (index % 2 === 0) {
-      firstList.push(item);
-    } else {
-      secondList.push(item);
-    }
-  });
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
-  firstList.sort((a, b) => a - b);
-  secondList.sort((a, b) => a - b);
-
-  let difference = 0;
-
-  firstList.forEach((item, index) => {
-    difference += Math.abs(item - secondList[index]);
-  });
-
-  // ***** //
-  // DAY 2 //
-  // ***** //
-
-  let similarityScore = 0;
-
-  const occurrences = secondList.reduce((acc, curr) => {
-    acc[curr] = (acc[curr] || 0) + 1;
-    return acc;
-  }, {} as Record<number, number>);
-
-  firstList.forEach((item) => {
-    if (occurrences[item]) {
-      similarityScore += item * occurrences[item];
-    }
-  });
+  // Day 1
+  const { firstList, secondList } = getDayOneSolution(input);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const similarityScore = getDayOnePartTwoSolution(firstList, secondList);
+  // ^ eslint because we may use this tomorrow :)
 
   return (
-    <>
-      <div>Day 1: {difference}</div>
-      <div>Day 2: {similarityScore}</div>
-    </>
+    <Theme appearance={isDarkMode ? "dark" : "light"}>
+      <Flex
+        width={"100%"}
+        direction={"row"}
+        justify="center"
+        align="center"
+        gap={"5"}
+      >
+        <h1>Sanford's Advent of Code Solutions 2024</h1>
+        <DarkModeSwitch
+          checked={isDarkMode}
+          onChange={toggleDarkMode}
+          size={30}
+        />
+      </Flex>
+
+      <Grid columns="2" gap="3" width="auto">
+        <DailyCard
+          day={1}
+          title="Historian Hysteria"
+          codeSolution={dayOneSolutionString}
+          isThemeDark={isDarkMode}
+        />
+        <DailyCard
+          day={1}
+          title="Historian Hysteria Part 2"
+          codeSolution={dayOnePartTwoSolutionString}
+          isThemeDark={isDarkMode}
+        />
+      </Grid>
+    </Theme>
   );
 }
 
