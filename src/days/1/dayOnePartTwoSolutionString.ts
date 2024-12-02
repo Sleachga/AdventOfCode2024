@@ -1,4 +1,4 @@
-export const dayOnePartTwoSolutionString = `const getDayTwoSolution = (
+export const dayOnePartTwoSolutionString = `const getDayOnePartTwoSolution = (
   firstList: number[],
   secondList: number[]
 ): number => {
@@ -18,5 +18,5 @@ export const dayOnePartTwoSolutionString = `const getDayTwoSolution = (
   return similarityScore;
 };
 
-export { getDayTwoSolution };
+export { getDayOnePartTwoSolution };
 `;
