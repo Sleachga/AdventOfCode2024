@@ -19,6 +19,12 @@ function App() {
     setIsDarkMode(!isDarkMode);
   };
 
+  const isMobile = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  };
+
   // Day 1
   // const { firstList, secondList } = getDayOneSolution(input);
   // const similarityScore = getDayOnePartTwoSolution(firstList, secondList);
@@ -40,7 +46,7 @@ function App() {
         />
       </Flex>
 
-      <Grid columns="2" gap="3" width="auto">
+      <Grid columns={isMobile() ? "1" : "2"} gap="3" width="auto">
         <DailyCard
           day={1}
           title="Historian Hysteria"
